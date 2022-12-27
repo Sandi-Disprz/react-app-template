@@ -1,0 +1,22 @@
+.events{
+    display:flex;
+    padding:10px;
+    border:1px solid #d4d4d4;
+    box-sizing: border-box;
+    box-shadow: 0px 3px 11px #615e5e;
+    margin:10px;
+    justify-content: space-around;
+    align-items: center;
+}
+.quick-options{
+    position: fixed;
+    display:flex;
+    flex-direction: column;
+    left:274px;
+    padding:10px;
+    border:1px solid #d4d4d4;
+    box-sizing: border-box;
+    box-shadow: 0px 3px 11px #615e5e;
+    align-content: space-between;
+    justify-content: flex-start;
+}

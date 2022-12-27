@@ -1,0 +1,182 @@
+@mixin boxes{
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-meeting{
+    position: absolute;
+    left: 35%;
+    top: 20%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border:1px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, rgb(154, 237, 237), rgb(63, 173, 131)) border-box;
+    
+    background-color: #d4d4d4;
+    width:500px;
+    padding: 0;
+    opacity: 0;
+    z-index:100;
+    transform: rotate3d(1, .5, .5, 180deg) scale(0.1);
+    transition: all 1s linear;
+    box-shadow: 0px 3px 11px 10px #d4d4d4;
+    .meeting-head{
+       @include boxes;
+        background-color:rgb(135, 235, 148);
+        z-index:100;
+        margin-top:-1px;
+        .move-to-side{
+            cursor: pointer;
+        }
+        .move-to-side:hover+ .tool-tip{
+            display: block;
+            top:30px;
+        }
+        .meeting-title{
+            font-size: large;
+            color:white;
+            text-align: center;
+        }
+        .spin-btn{
+            border:0px solid transparent;
+            background-color: transparent;
+            .cancel-event{
+                cursor: pointer;
+                font-size: 18px;
+            }
+            .cancel-event:hover {
+                color: red;
+            }
+        }
+        .spin-btn:hover{
+            animation:spin 0.4s linear 0s 1;
+            
+             @keyframes spin {
+                from{
+                    transform: rotate(0);
+                    // border-color: black;
+                }
+                to{
+                    transform: rotate(360deg);
+                    // border-color: white;
+                }
+            }  
+        }    
+    }  
+    .set-meet{
+        display:flex;
+        flex-direction: column;
+        align-content: space-between;
+        justify-items: flex-start;
+        padding:20px 40px;
+        .row-details{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap:40px;
+            @import url(./CalenderHeader/CalenderHeader.scss);
+            .title-box{
+                position: relative;
+                border:1px solid #d4d4d4;
+                border-width: 0px 0px 1px 0px;
+                // margin:20px 40px 5px 40px;
+                // width:80%;
+                
+            } 
+            .title-box:focus{
+                border:1px solid #d4d4d4;
+                border-width: 0px 0px 3px 0px;
+                border-color: blue;
+                outline: none;
+                border-radius: 2px;
+            }
+            .title-box:focus::placeholder{
+                opacity:1;
+                color:#143cde;
+            }
+        }
+        
+    }
+    
+}
+.add-tool{
+    display: block;
+    top:35px;
+    left:470px;
+}
+.add-animation{
+    opacity: 1;
+    transform: none;
+    top:25%;
+}
+.btn{
+    border:1px solid #d4d4d4;
+    border-radius: 4px;
+    padding: 10px;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+}
+.add{
+    background-color: rgb(135, 235, 148);
+    color:black;
+}
+.cancel{
+    background-color: #fa696e;
+    color: white;
+}
+.shake{
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+.popup-delete-event{
+    display:flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-items: flex-start;
+    position: relative;
+    width:300px;
+    left:40%;
+    top:250px;
+    z-index:300;
+    border:1px solid #d4d4d4;
+    background-color: white;
+    box-shadow: 0px 3px 11px 5px #d4d4d4;
+    .popup-head{
+        width:93.5%;
+        background-color: green;
+        color: white;
+        margin: 0;
+        padding: 10px;
+    }
+    .pair-buttons{
+        display: flex;
+        padding:10px 30px;
+        gap:20px;
+    }
+}
