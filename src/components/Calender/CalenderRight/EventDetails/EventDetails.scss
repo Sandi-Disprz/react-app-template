@@ -1,0 +1,109 @@
+@mixin showevent {
+  display: flex;
+  align-items: center;
+  // justify-content: space-around;
+  gap: 10px;
+  // flex-wrap: wrap;
+}
+
+.event-details {
+  position: fixed;
+  border: 1px solid var(--border-color);
+  z-index: -1;
+  width: 20%;
+  background-color: white;
+  top: 160px;
+  left: 580px;
+  right: 1px;
+  transition: all 0.4s linear;
+  opacity: 0;
+  border-radius: 6px;
+
+  .event-details-head {
+    @include showevent;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    justify-content: space-around;
+    background-color: #d4d4d4;
+    // width: 100.1%;
+    padding:5px;
+
+    .cancel-btn,
+    .move-to,
+    .delete,
+    .edit {
+      cursor: pointer;
+    }
+  }
+  .event-data {
+    position: relative;
+    left: 0px;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: center;
+    .show-detail {
+      @include showevent;
+      padding: 10px;
+      h3,
+      p {
+        position: relative;
+        margin: 0;
+      }
+    }
+    .mail-list{
+      display: flex;
+      align-items: center;
+      // justify-content: space-around;
+      gap: 10px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+  }
+}
+.details-anim {
+  z-index: 5;
+  top: 180px;
+  opacity: 1;
+}
+.move-bottom {
+  top: 450px;
+  // right:200px;
+  left: 78%;
+}
+.delete:hover {
+  color: red;
+}
+.delete:hover + .tool-tip {
+  display: block;
+  top: 43px;
+  left: 140px;
+}
+.cancel-btn:hover + .tool-tip {
+  display: block;
+  top: 43px;
+  left: 260px;
+}
+.move-to:hover + .tool-tip {
+  display: block;
+  top: 43px;
+  left: 0px;
+}
+
+.add-events-background {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  z-index: -5;
+}
+.back-trans {
+  z-index: 5;
+}

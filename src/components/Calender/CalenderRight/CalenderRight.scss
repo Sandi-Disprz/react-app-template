@@ -1,5 +1,244 @@
-.calender-right{
-    position :relative;
-    left:350px;
-    top:65.15px;
+.calender-right {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  height: calc(100vh - 64.15px);
+  .day-scheduler {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    outline: none;
+    .schedule {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      .day-scheduler-split-flex {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+        overflow: hidden;
+        border: 1px solid #d4d4d4;
+        margin: 30px;
+        padding: 0px 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        .scheduler-head {
+          display: flex;
+          .time-format {
+            width: 46.26px;
+            text-align: right;
+            .empty {
+              height: 32px;
+            }
+            .time-zone {
+              font-size: 10px;
+              padding-right: 5px;
+            }
+          }
+          .today-date {
+            display: flex;
+            border-bottom: 1px solid #d4d4d4;
+            flex: 1 1 auto;
+            margin-right: 10px;
+            overflow: hidden;
+            .center-line {
+              width: 9px;
+              margin-top: 27px;
+              border-right: 1px solid #d4d4d4;
+            }
+            .date-details {
+              display: flex;
+              align-items: flex-end;
+              gap: 5px;
+              // width: 100%;
+              padding-bottom: 7px;
+              padding: 10px 0px 10px 10px;
+              align-items: center;
+              .date-now {
+                margin: 0;
+                border: 1px solid transparent;
+                border-radius: 50%;
+                padding: 5px;
+                font-size: 24px;
+                // letter-spacing: -2.5px;
+                text-align: center;
+                text-indent: 0.5px;
+                font-variant: tabular-nums;
+                font-feature-settings: "tnum" 1, "tnum";
+                width: 30px;
+                height: 30px;
+                margin-right: 5px;
+                color: var(--text-color-primary);
+                background-color: var(--bg-primary-thin);
+              }
+              .add {
+                color: var(--text-color-primary);
+                background-color: var(--bg-primary-thick);
+              }
+              .day-now {
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+              }
+            }
+            .holiday-flex {
+              display: flex;
+              position: relative;
+              width: 70%;
+              top: 15px;
+              margin-left: 20px;
+              gap: 20px;
+            }
+          }
+        }
+        .scheduler {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          flex: 1 1 60%;
+          .schedule-split {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: stretch;
+            overflow: hidden;
+            .time-line {
+              display: flex;
+              align-items: flex-start;
+              flex: none;
+              min-width: 50px;
+              height: auto;
+              overflow-y: hidden;
+              .time-box {
+                position: relative;
+                margin-left: auto;
+                box-sizing: border-box;
+                .time {
+                  position: relative;
+                  height: 48px;
+                  padding-right: 8px;
+                  text-align: right;
+
+                  .ftime {
+                    display: block;
+                    position: relative;
+                    top: -6px;
+                  }
+                  .ctime {
+                    font-size: 10px;
+                    color: var(--bg-secondary);
+                  }
+                }
+              }
+            }
+            .event-timeline {
+              overflow-x: hidden;
+              overflow-y: scroll;
+              display: flex;
+              align-items: flex-start;
+              flex: 1 1 auto;
+              .split-event {
+                display: inline-flex;
+                vertical-align: top;
+                flex: none;
+                min-width: 95%;
+                overflow: hidden;
+                position: relative;
+                .top-line {
+                  .top {
+                    height: 48px;
+                  }
+                  .top::after {
+                    content: "";
+                    border: 1px solid #d4d4d4;
+                    border-top: none;
+                    position: absolute;
+                    width: 100%;
+                    margin-top: -1px;
+                    z-index: 3;
+                    pointer-events: none;
+                  }
+                }
+                .gap-line {
+                  width: 5px;
+                  border-right: 1px solid #dadce0;
+                }
+                .map-event {
+                  position: relative;
+                  padding-right: 12px;
+                  box-sizing: border-box;
+                  flex: 1 1 auto;
+                  flex-shrink: 0;
+                  width: 129px;
+                  min-width: 129px;
+                  outline: none;
+                  overflow: visible;
+                  border-right: 1px solid white;
+                  .current-time-line::before {
+                    content: "";
+                    width: 12px;
+                    height: 12px;
+                    border: 0px solid transparent;
+                    border-radius: 50%;
+                    background-color: var(--time-line);
+                    position: absolute;
+                    margin-left: -6px;
+                    bottom: -2.1px;
+                    z-index: 5;
+                  }
+                  .empty-box {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                  }
+                  .set-events {
+                    // position: relative;
+                    height: 100%;
+                    width: 100%;
+                    .event {
+                      position: absolute;
+                      left: 2px;
+                      border-radius: 4px;
+                      outline: none;
+                      text-align: center;
+                      z-index: 3;
+                    }
+                    .expand-event:hover{
+                      height:15px !important;
+                      font-size: 10px !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
+::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border: none;
+  box-shadow: none;
+  background: #dadce0;
+  border-radius: 8px;
+  max-height: 20px;
+}
+// ::-webkit-scrollbar-track{
+//     height: 100%;
+//     width:14px;
+//     border: 1px solid #777;
+//     border-radius: 8px;
+// }

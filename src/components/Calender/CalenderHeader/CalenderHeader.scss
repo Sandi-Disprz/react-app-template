@@ -1,14 +1,14 @@
-@mixin overlay{
-    display: block;
-    position: fixed;
-    font-size: 10px;
-    color: #777;
-    border: 1px solid #777;
-    background-color: aliceblue;
-    padding: 3px;
-    border-radius: 5px;
-    z-index: 100;
-    box-shadow: 0px 3px 11px #636e6e;
+@mixin overlay {
+  display: block;
+  position: fixed;
+  font-size: 10px;
+  color: var(--bg-secondary);
+  border: 1px solid var(--bg-secondary);
+  background-color: aliceblue;
+  padding: 3px;
+  border-radius: 5px;
+  z-index: 100;
+  box-shadow: 0px 3px 11px #636e6e;
 }
 // .theme-color{
 //     overflow-y: visible;
@@ -17,101 +17,140 @@
 //     z-index: 200;
 // }
 .trans-left {
-    position: absolute;
-    z-index: 5;
-    width: 100px;
-    // overflow-y: visible;
-    transition: all .3s ease;
-    background-image: linear-gradient(
-      90deg,
-      rgb(74, 233, 196),
-      rgb(150, 209, 222) 60%,
-      hsla(0, 0%, 100%, 0)
-    );
+  position: absolute;
+  z-index: 5;
+  width: 100px;
+  // overflow-y: visible;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(
+    90deg,
+    rgb(74, 233, 196),
+    rgb(150, 209, 222) 60%,
+    hsla(0, 0%, 100%, 0)
+  );
+}
+.trans-right {
+  // position: absolute;
+  left: auto;
+  width: 96%;
+  overflow-y: visible;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(
+    280deg,
+    var(--gradient-blue),
+    var(--gradient-green) 50%,
+    hsla(0, 0%, 100%, 0)
+  );
+}
+.trans {
+  background-image: linear-gradient(
+    139deg,
+    var(--gradient-blue),
+    var(--gradient-green) 50%,
+    hsl(0deg 29% 85% / 0%)
+  );
+}
+.content-header {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-left: 40px;
+  background-color: var(--bg-primary);
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  margin: 0px auto;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 60px;
+  .ham-menu {
+    // color: white;
   }
-  .trans-right{
-    // position: absolute;
-    left: auto;
-    width: 96%;
-    overflow-y: visible;
-    transition: all .3s ease;
-    background-image: linear-gradient(
-      280deg,
-      rgb(86, 216, 233),
-      rgb(164, 217, 219) 50%,
-      hsla(0, 0%, 100%, 0)
-    );
+  .theme-content,
+  .ham-content {
+    display: none;
   }
-  .trans{
-    background-image: linear-gradient( 139deg, rgb(86, 216, 233), rgb(86 216 233) 50%, hsl(0deg 29% 85% / 0%) );
-}
-.content-header{
-    display:flex;
-    align-items: center;
-    gap:40px;
-    padding-left: 40px;
-    background-color:rgb(135, 235, 148);
-    width:100%; 
-    position:fixed; 
-    top:0px; 
-    margin:0px auto;
-    z-index:100;
-    border-bottom: 1px solid #d4d4d4;
-    .ham-menu{
-        color: white;
-    }
-    .theme-content,.ham-content{
-        display: none;
-    }
-    .ham-menu:hover+ .ham-content{
-        @include overlay;
-        left: 40px;
-        top:40px;
-    }
-    .calendar-logo{
-        cursor: pointer;
-    }
-    .calendar-name{
-        font-size:16px;
-        color: white;
-    }
-    .theme{
-        color: white;
-        cursor: pointer;
-        // margin-left:75%;
-    }
-    
-    .theme:hover+ .theme-content{
-        @include overlay;
-        left:-40px;
-        position: relative;
-        top:20px;
-    }
-    .today-btn{
-        border:1px solid white;
-        border-radius: 4px;
-        padding: 10px;
-        color:white;
-        background-color:rgb(135, 235, 148);
-        letter-spacing: 0.3px;
-        cursor: pointer;
-        
-    }
-    .current-day{
-        display:flex;
-        .current-date,.current-month,.current-year{
-            color: white;
-            font-size: 24px;
-            margin-left:10px;
-        }
-    }
-    
-    .change-color{
-        background-color: rgb(227, 82, 82);
-    }
-}
-.change-theme{
-    background-image: "../images/christmas-banner.png";
-}
+  .ham-menu:hover + .ham-content {
+    @include overlay;
+    left: 40px;
+    top: 40px;
+  }
+  .calendar-logo {
+    cursor: pointer;
+  }
+  .calendar-name {
+    font-size: 20px;
+    color: var(--text-color-primary);
+  }
+  .theme {
+    color: var(--text-color-primary);
+    cursor: pointer;
+    // margin-left:75%;
+  }
 
+  .theme:hover + .theme-content {
+    @include overlay;
+    left: -40px;
+    position: relative;
+    top: 20px;
+  }
+  .today-btn {
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 10px;
+    color: var(--text-color-primary);
+    background-color: var(--bg-primary);
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    font-family: "Arbeit";
+  }
+  .current-day {
+    display: flex;
+    .current-date,
+    .current-month,
+    .current-year {
+      color: var(--text-color-primary);
+      font-size: 20px;
+      margin-left: 10px;
+    }
+  }
 
+  .change-color {
+    background-color: var(--btn-color-primary);
+  }
+}
+.change-theme {
+  background-image: "../images/christmas-banner.png";
+}
+@mixin btn {
+  background-color: transparent;
+  padding: 8px 8px;
+  border: 1px solid var(--text-color-primary);
+  font-size: 16px;
+  color: var(--text-color-primary);
+  font-family: "Arbeit";
+}
+.view-buttons {
+  display: flex;
+  align-items: center;
+  .day-btn {
+    @include btn;
+    width: 50px;
+    border-right: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .agenda-btn {
+    @include btn;
+    width: 70px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .current-view {
+    background-color: var(--gradient-green);
+  }
+}
+.current-time {
+  color: #fff;
+  letter-spacing: 0.3px;
+}

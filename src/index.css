@@ -1,12 +1,18 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:'Arbeit';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--transparent);
+  user-select: none;
 }
-
+button{
+  font-family: 'Arbeit';
+}
+h5{
+  font-size: 16px;
+  margin:10px 0px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -22,3 +28,8 @@ ul{
   padding: 0;
 }
 
+@media(max-width:450px){
+  p{
+    font-size: 12px;
+  }
+}

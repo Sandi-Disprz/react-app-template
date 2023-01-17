@@ -1,0 +1,58 @@
+@mixin post-call {
+  position: fixed;
+  bottom: 0;
+  left: 45%;
+  width: 220px;
+  background-color: #202124;
+  padding: 10px;
+}
+.post-saving {
+  @include post-call;
+  display: flex;
+  justify-content: space-around;
+  span {
+    font-size: 14px;
+    animation: fade 1s linear 0s infinite;
+    margin: 0;
+  }
+  @keyframes fade {
+    from {
+      color: white;
+    }
+    to {
+      color: black;
+    }
+  }
+  .post-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid white;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.5s linear 0s infinite;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0);
+      // border-color: black;
+    }
+    to {
+      transform: rotate(360deg);
+      // border-color: white;
+    }
+  }
+}
+
+.event-completed {
+  @include post-call;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .event-saved {
+    color: var(--text-color-primary);
+    font-size: 18px;
+  }
+  .r.btn {
+    cursor: pointer;
+  }
+}

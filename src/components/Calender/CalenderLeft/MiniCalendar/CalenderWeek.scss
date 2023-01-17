@@ -1,0 +1,21 @@
+.week-table {
+  display: flex;
+  padding: 0px 10px;
+  gap: 10px;
+  background-color: var(--bg-primary-thin);
+}
+.btn-week {
+  border: 0px solid;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  .week-name {
+    font-style: normal;
+    font-family: "Arbeit";
+    font-size: 12px;
+    padding: 3.5px;
+    // font-weight: 800;
+    color: var(--text-color-primary);
+  }
+}

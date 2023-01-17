@@ -1,19 +1,23 @@
-import {React} from 'react';
-import '../CalenderLeftStyles/CalenderLeft.scss'
-import MiniCalender from'./MiniCalender'
-import ShowEvents from './ShowEvents';
-import Event from './EventButton';
-function CalenderLeft({date,changeDate,changeday,setChangeDay,yearChange,setYearChange,AddEvent,eventData}) {
+import { React } from "react";
+import "./CalenderLeft.scss";
+import MiniCalender from "./MiniCalendar/MiniCalender";
+import Event from "./EventButton/EventButton";
+import DisprzHolidays from "./DisprzHolidays/DisprzHolidays";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+function CalenderLeft() {
+  var i=0;
   return (
-    <div className='calender-left'>
-      <Event AddEvent={AddEvent}/>
-      <MiniCalender Mdate={date} MchangeDate={changeDate} changeday={changeday} 
-        setChangeDay={setChangeDay} yearChange={yearChange} setYearChange={setYearChange}
-       addEvent={AddEvent} />
-      <ShowEvents  eventData={eventData}/>
-      
+    <div className="calender-left">
+      <Event />
+      <MiniCalender />
+      <DisprzHolidays i={i}/>
+      {/* <button class="glow-on-hover" type="button">
+        <h4 className='event-tag'>Create</h4>
+        <FontAwesomeIcon icon={faPlus} className='plus'/>
+      </button> */}
     </div>
-  )
+  );
 }
 
-export default CalenderLeft
+export default CalenderLeft;
