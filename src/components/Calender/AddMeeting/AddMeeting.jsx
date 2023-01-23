@@ -88,9 +88,11 @@ function AddMeeting({
     //   key:uuid(),
     //   Name:mail
     // }
+    if(mail.length>0){
     const newmail=[mail,...mailList]
     setMailList(newmail);
     setMail('');
+    }
   }
   const removeMail=(key)=>{
     const newList=mailList.filter((item,index)=>index!==key);
@@ -105,6 +107,8 @@ function AddMeeting({
       document.removeEventListener("keydown", keyPress);
     };
   }, [keyPress]);
+
+  
   return (
     <>
       <div

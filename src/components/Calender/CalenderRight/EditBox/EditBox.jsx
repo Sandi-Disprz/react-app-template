@@ -6,6 +6,8 @@ import { faCircleXmark,faPlus,faXmark } from "@fortawesome/free-solid-svg-icons"
 import "./EditBox.scss";
 import { ViewWrapper } from "../../Calender";
 import TextArea from "react-textarea-autosize";
+import updateAudio from '../../../../assets/success-1-6297.mp3';
+import errorAudio from '../../../../assets/error-call-to-attention-129258.mp3';
 function EditBox({
   eventData,
   setUpdateBox,
@@ -13,8 +15,8 @@ function EditBox({
   setShowEventDetails,
   updateBox,
 }) {
-  const { setErrorMessage, setConflictAlert } = useContext(ViewWrapper);
-  const [updateError, setUpdateError] = useState(false);
+  const { setErrorMessage, setConflictAlert,ConflictAlert } = useContext(ViewWrapper);
+
   const [title, setTitle] = useState(eventData.eventName);
   const [startTime, setStartTime] = useState(eventData.startTime);
   const [endTime, setEndTime] = useState(eventData.endTime);
@@ -63,20 +65,27 @@ function EditBox({
         receiverMail:mailList
       })
       .then(() => {
+        new Audio(updateAudio).play()
         setUpdateBox(false);
         setShowPosted(true);
         setShowEventDetails(false);
       })
       .catch((error) => {
-        setUpdateError(true);
-        setErrorMessage(error.response);
+        new Audio(errorAudio).play();
+        setErrorMessage(error);
         setConflictAlert(true);
         setUpdateBox(true);
+        console.log(error.response);
         setShowPosted(false);
+        setStartTime(eventData.startTime);
+        setEndTime(eventData.endTime);
       });
   };
-  console.log(eventData);
-  return ReactDOM.createPortal(
+  const updateShow=()=>{
+    setUpdateBox(false);
+  }
+  
+  return(
     <>
       <div
         className={`add-events-background  ${updateBox && "back-trans"}`}
@@ -91,7 +100,7 @@ function EditBox({
             <FontAwesomeIcon
               icon={faCircleXmark}
               className="cancel-event"
-              onClick={() => setUpdateBox(false)}
+              onClick={ConflictAlert?'':updateShow}
             ></FontAwesomeIcon>
           </button>
         </div>
@@ -181,8 +190,8 @@ function EditBox({
           </div>
         </div>
       </div>
-    </>,
-    document.getElementById("update")
+    </>
+    // document.getElementById("update")
   );
 }
 

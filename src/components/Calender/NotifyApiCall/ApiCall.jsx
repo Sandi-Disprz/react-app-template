@@ -30,9 +30,6 @@ function ApiCall({ setShowPosted }) {
           ) : (
             <div className={`${!check && "event-completed"}`}>
               <p className="event-saved">Event Saved.</p>
-              <button className="r-btn" onclick={clear}>
-                <FontAwesomeIcon icon={faXmark} />
-              </button>
             </div>
           )}
         </>

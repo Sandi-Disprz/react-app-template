@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import deleteAudio from '../../../../assets/click-delete.mp3';
 import "./EventDetails.scss";
 import {
   faTrashCan,
@@ -57,14 +58,14 @@ function EventDetails({
     setMove(false);
   };
   const handleDelete = (id) => {
+    new Audio(deleteAudio).play();
     setShowDetails(true);
     setShowEventDetails(false);
+    setDelete(true);
+    console.log(id);
     axios
       .delete(`http://localhost:5169/api/appointments/${id}`)
       .then(() => {
-        setTimeout(() => {
-          setDelete(true);
-        }, 1000);
         setDelete(false);
       });
   };

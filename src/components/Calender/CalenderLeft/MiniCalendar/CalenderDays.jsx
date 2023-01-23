@@ -32,7 +32,8 @@ function CalendarDays({ reset, setReset }) {
   const preDayCount =
     firstDayOfMonth.getDay() === 0 ? 6 : firstDayOfMonth.getDay() - 1;
   const prevDays = Array.from(new Array(preDayCount), (elem, index) =>
-    new Date(firstDayOfMonth - 86400000 * (preDayCount - index)).getDate()
+    // new Date(firstDayOfMonth - 86400000 * (preDayCount - index)).getDate()
+    new Date(firstDayOfMonth.getFullYear(),firstDayOfMonth.getMonth(),-(preDayCount-index-1)).getDate()
   );
 
   const prevDayList = prevDays.map((elem, index) => {

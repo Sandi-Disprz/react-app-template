@@ -10,6 +10,15 @@
   @include post-call;
   display: flex;
   justify-content: space-around;
+  animation: openUp 0.2s ease;
+  @keyframes openUp {
+    from{
+      transform: translateY(50px);
+    }
+    to{
+      transform: translateY(0px);
+    }
+  }
   span {
     font-size: 14px;
     animation: fade 1s linear 0s infinite;

@@ -1,9 +1,9 @@
 import axios from "axios";
 import moment from "moment/moment";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,useRef } from "react";
 import { DAYS } from "../../../DAYS_MONTHS";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { faClock,faChevronCircleUp } from "@fortawesome/free-solid-svg-icons";
 import "./RangeAgenda.scss";
 import { monthTitleList } from "../../../DAYS_MONTHS";
 import { ContextWrapper, ViewWrapper } from "../Calender";
@@ -20,6 +20,38 @@ function AgendaRange() {
       });
   }, [showPosted, showDetails, fdate]);
   const { selectedDate, yearChange, changeday } = useContext(ContextWrapper);
+  const [scrolled,setScroll]=useState(false);
+  const scrollRef=useRef(null);
+  
+  useEffect(()=>{
+    const point=scrollRef.current;
+    console.log(point.scrollTop);
+    const handleScroll=()=>{
+      if(point.scrollTop >70&& !scrolled){
+        setScroll(true);
+      }
+      else if(point.scrollTop<60 && scrolled){
+        setScroll(false);
+      }
+    }
+    point.addEventListener("scroll",handleScroll);
+    return()=>{
+      point.addEventListener("scroll",handleScroll);
+    }
+  },[scrolled.scrollRef])
+
+  const handleClick=(event)=>{
+    const point=scrollRef.current;
+    
+    if(event.type=== "click"){
+        point.scrollTo({top:0,behaviour:"smooth"});  
+    }
+    else{
+      const height=point.clientHeight/8;
+      point.scrollTo({top:height,behaviour:"smooth"});
+    }
+  }
+ 
   const datenow = new Date(selectedDate);
   const fromMonth = monthTitleList[datenow.getMonth()].slice(0, 3);
   var toMonth;
@@ -39,79 +71,99 @@ function AgendaRange() {
   }
   //   console.log(changeday);
   return (
-    <div className="agenda-view">
-      {changeday ? (
-        <div className="agenda-head">
-          <p className="date-range">
-            {" "}
-            {fm} - {toMonth} {year}
-          </p>
-        </div>
-      ) : (
-        <div className="agenda-head">
-          <p className="date-range">
-            {" "}
-            {fm} - {lm} {dateNow.getFullYear()}
-          </p>
-        </div>
-      )}
-
-      {rangeData.length > 0 ? (
-        <>
-          {rangeData.map((currentData) => {
-            const date = currentData.startTime
-              .substring(0, 10)
-              .split("-")
-              .reverse("")
-              .join("-");
-            const eventStart = currentData.startTime.substring(11, 16);
-            const eventEnd = currentData.endTime.substring(11, 16);
-            var eventDesc = currentData.eventDescription;
-            const d = currentData.startTime.replace("T", " ");
-            const day = DAYS[new Date(d).getDay()];
-            var descLength = eventDesc.length;
-            var startnoon, endnoon;
-            if (new Date(currentData.startTime).getHours() > 12) {
-              startnoon = "PM";
-            } else {
-              startnoon = "AM";
-            }
-            if (new Date(currentData.endTime).getHours() > 12) {
-              endnoon = "PM";
-            } else {
-              endnoon = "AM";
-            }
-
-            if (descLength > 30) {
-              eventDesc = eventDesc.slice(0, 30);
-            }
-            return (
-              <div className="agenda-box" key={currentData.id}>
-                <p className="agenda-date">
-                  {day} , {date}{" "}
+    <div className="agenda-page">
+      <div className="agenda-view">
+        <div className="agenda-list">
+          <div className="agenda-split-flex">
+            {changeday ? (
+              <div className="agenda-head">
+                <p className="date-range">
+                  {" "}
+                  {fm} - {toMonth} {year}
                 </p>
-                <div className="agenda-time-period">
-                  <FontAwesomeIcon icon={faClock} />
-                  <p className="agenda-time-details">
-                    {eventStart}
-                    {startnoon} - {eventEnd}
-                    {endnoon}{" "}
-                  </p>
-                </div>
-                <div className="agenda-title-card">{currentData.eventName}</div>
-
-                {descLength > 15 ? (
-                  <div className="agenda-desc">{eventDesc}....</div>
-                ) : (
-                  <div className="agenda-desc">{eventDesc}</div>
-                )}
               </div>
-            );
-          })}
-        </>
-      ) : (
-        ""
-      )}
+            ) : (
+              <div className="agenda-head">
+                <p className="date-range">
+                  {" "}
+                  {fm} - {lm} {dateNow.getFullYear()}
+                </p>
+              </div>
+            )}
+            <div className="agenda-row">
+              <div className="agenda-split">
+                <div className="agenda-timeline" ref={scrollRef}>
+                  <div className="map-agenda-event">
+                  {rangeData.length > 0 ? (
+                    <>
+                      {rangeData.map((currentData) => {
+                        const date = currentData.startTime
+                          .substring(0, 10)
+                          .split("-")
+                          .reverse("")
+                          .join("-");
+                        const eventStart = currentData.startTime.substring(
+                          11,
+                          16
+                        );
+                        const eventEnd = currentData.endTime.substring(11, 16);
+                        var eventDesc = currentData.eventDescription;
+                        const d = currentData.startTime.replace("T", " ");
+                        const day = DAYS[new Date(d).getDay()];
+                        var descLength = eventDesc.length;
+                        var startnoon, endnoon;
+                        if (new Date(currentData.startTime).getHours() > 12) {
+                          startnoon = "PM";
+                        } else {
+                          startnoon = "AM";
+                        }
+                        if (new Date(currentData.endTime).getHours() > 12) {
+                          endnoon = "PM";
+                        } else {
+                          endnoon = "AM";
+                        }
+
+                        if (descLength > 30) {
+                          eventDesc = eventDesc.slice(0, 30);
+                        }
+                        return (
+                          <div className="agenda-box" key={currentData.id}>
+                            <p className="agenda-date">
+                              {day} , {date}{" "}
+                            </p>
+                            <div className="agenda-time-period">
+                              <FontAwesomeIcon icon={faClock} />
+                              <p className="agenda-time-details">
+                                {eventStart}
+                                {startnoon} - {eventEnd}
+                                {endnoon}{" "}
+                              </p>
+                            </div>
+                            <div className="agenda-title-card">
+                              {currentData.eventName}
+                            </div>
+
+                            {descLength > 15 ? (
+                              <div className="agenda-desc">{eventDesc}....</div>
+                            ) : (
+                              <div className="agenda-desc">{eventDesc}</div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {scrolled===true?<button className="scroll-to-top" onClick={handleClick} onDoubleClick={handleClick}>
+            <FontAwesomeIcon icon={faChevronCircleUp} className={`icon-scroll ${scrolled && 'scroll-style'}`}/></button>:''}
+        </div>
+      </div>
     </div>
   );
 }

@@ -11,6 +11,8 @@ function MapData({ eventData, setShowDetails, setShowPosted }) {
   const convertStrtodate = (d) => {
     return d.replace("T", " ");
   };
+  const StartHr = eventData.startTime.substring(11, 16);
+  const EndHr = eventData.endTime.substring(11, 16);
   const start = new Date(convertStrtodate(eventData.startTime));
   const end = new Date(convertStrtodate(eventData.endTime));
   const eventStart = start.getHours() + start.getMinutes() / 60;
@@ -30,7 +32,7 @@ function MapData({ eventData, setShowDetails, setShowPosted }) {
   return (
     <>
       <div className={`event ${eventDuration<0.4 && 'expand-event'}`} style={eventStyle} onClick={handleEventClick}>
-        <p> ( {eventData.eventName} ) </p>
+        <p> ( {eventData.eventName} ) ({StartHr}  -  {EndHr})</p>
       </div>
       {/* {showEventDetails?( */}
       <EventDetails

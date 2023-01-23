@@ -3,8 +3,11 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import "./ConflictBox.scss";
 function ConflictBox({ ErrorMessage, CloseConflict, remainder }) {
+  
   return (
     <>
+    {console.log("error on update")}
+    
       {ErrorMessage.response ? (
         <div className={`conflict-box ${remainder ? "shake" : ""}`}>
           <div className="box-head">

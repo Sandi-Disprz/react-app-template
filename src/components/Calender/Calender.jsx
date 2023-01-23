@@ -2,7 +2,6 @@ import { React, useState, useEffect,createContext} from "react";
 import "./Calendar.scss";
 import CalenderHeader from "../Calender/CalenderHeader/CalenderHeader";
 import CalenderLeft from "./CalenderLeft/CalenderLeft";
-// import CalenderRight from "./CalenderRight/CalenderRight";
 import AddMeeting from "./AddMeeting/AddMeeting";
 import uuid from "react-uuid";
 import axios from "axios";
@@ -10,9 +9,10 @@ import ApiCall from "./NotifyApiCall/ApiCall";
 import ConflictBox from "./DialogBox/ConflictBox";
 import "../../App.css";
 import moment from "moment";
-// import AgendaRange from "./RangeAgenda/AgendaRange";
 import ViewRouter from "../ViewRouter";
-
+import successAudio from '../../assets/success-1-6297.mp3'
+import errorAudio from '../../assets/Vadivelu-alert.mp3'
+import MeetingStat from './MeetingCalculation/MeetingStat'
 export const ContextWrapper = createContext();
 export const ViewWrapper = createContext();
 function Calender() {
@@ -68,7 +68,6 @@ function Calender() {
   const [deleted, setDelete] = useState(false);
   const checkrange = new Date(selectedDate);
   const checkr = new Date();
-
   var searchRange;
   if (changeday === true) {
     checkrange.setMonth(checkrange.getMonth() + 1);
@@ -145,6 +144,7 @@ function Calender() {
     setConflictAlert(false);
   };
   const handleSubmit = (e) => {
+    
     if (title.replace(/\s/g, "") !== "" && startTime && endTime) {
       var strdate = new Date(startTime);
       formattedDate = formatDate(strdate).toString();
@@ -156,15 +156,17 @@ function Calender() {
           endTime: endTime,
           eventDescription: desc,
           receiverMail:mailList
-        })
+          // EventDate:formattedDate
+        }).then(()=>{setShowPosted(true);new Audio(successAudio).play();})
         .catch((error) => {
+          new Audio(errorAudio).play();
           setConflict(true);
           setErrorMessage(error);
           setConflictAlert(true);
           setEvent(true);
           setShowPosted(false);
         });
-      console.log(errorMessage.code);
+      
       setTitle("");
       setStartTime(moment(selectedDate).format("yyyy-MM-DDTHH:mm"));
       setEndTime(
@@ -177,6 +179,7 @@ function Calender() {
       if (conflict === false && errorMessage.code !== "ERR_NETWORK") {
         setEvent(false);
         setShowPosted(true);
+        
       }
     } else {
       setShake(true);
@@ -219,7 +222,7 @@ function Calender() {
             setDelete,
             setConflictAlert,
             setConflict,
-            conflict,
+            conflictAlert,
             searchRange,
             showDetails
           }}
@@ -227,6 +230,7 @@ function Calender() {
           <ViewRouter />
           {/* <CalenderRight/> */}
         </ViewWrapper.Provider>
+        {/* <MeetingStat /> */}
       </div>
 
       <AddMeeting
@@ -248,7 +252,7 @@ function Calender() {
         setRemainder={setRemainder}
         remindAlert={remindAlert}   
       />
-
+      {console.log(conflictAlert)}
       {conflictAlert ? (
         <ConflictBox
           ErrorMessage={errorMessage}
