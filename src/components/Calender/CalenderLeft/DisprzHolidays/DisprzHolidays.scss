@@ -1,0 +1,63 @@
+.display-box{
+    width:300px;
+    height:120px;
+    margin-left: 10px;
+    position: relative;
+    .holiday{
+        display: flex;
+        border-radius: 10px;
+        flex-direction: column;
+        border:1px solid transparent;
+        height:100%;
+        width: 100%;
+        position: absolute;
+        .holiday-body{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap:10px;
+            .data-body{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .data-holiday{
+                    display: flex;
+                    flex-direction: column;
+                    gap:5px;
+                    .holiday-name{
+                        letter-spacing: 0.5px;
+                    }
+                }
+                .prev-holiday{
+                    margin-right:20px;
+                }
+                .next-holiday{
+                    position:absolute;
+                    right:10px;
+                }
+            }  
+        }
+    }
+    .bg-newyear{
+        background-image: url(../../../Calender/images/new-year.png);
+    }
+    .bg-pongal{
+        background-image: url(../../../Calender/images/pongal.png);
+    }
+    .bg-general{
+        background-image: url(../../../Calender/images/general.png);
+    }
+    .bg-goodfriday{
+        background-image: url(../../../Calender/images/good-friday.png);
+    }
+    .bg-mayday{background-image: url(../../../Calender/images/mayday.png);}
+    .bg-bakrid{background-image: url(../../../Calender/images/ramadan.jpg);}
+    .bg-independance{background-image: url(../../../Calender/images/india-independence.png);}
+    .bg-vinayagar{background-image: url(../../../Calender/images/ganesh.png);}
+    .bg-gandhi{background-image: url(../../../Calender/images/gandhi.png);}
+    .bg-dushera{background-image: url(../../../Calender/images/dussehra.png);}
+    .bg-deepavali{background-image: url(../../../Calender/images/diwali.png);}
+    .bg-christmas{background-image: url(../../../Calender/images/christmas.png);}
+
+    
+}

@@ -1,0 +1,78 @@
+@mixin btn {
+  border: 0px solid;
+  background-color: transparent;
+  cursor: pointer;
+}
+.year-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-primary-thin);
+  color: var(--text-color-primary);
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.months {
+  margin-right: 10px;
+  margin-left: 35px;
+}
+.year {
+  // color: #c7bebe;
+  margin-bottom: 0px;
+  margin: 0;
+}
+
+.prev-year,
+.next-month,
+.next-year,
+.prev-month {
+  @include btn;
+}
+
+.prev-year:hover + .tool-tip {
+  display: block;
+  left: 20px;
+}
+
+.next-year:hover + .tool-tip {
+  display: block;
+  left: 220px;
+  overflow: visible;
+}
+.prev-month:hover + .tool-tip {
+  display: block;
+  left: 30px;
+}
+
+.next-month:hover + .tool-tip {
+  display: block;
+  left: 220px;
+  z-index: 200;
+  overflow: visible;
+}
+.icon-chcrt {
+  position: absolute;
+  left: 230px;
+  top: 15px;
+  color: white;
+  font-size: 14px;
+}
+.icon-chclt {
+  position: absolute;
+  margin-left: 10px;
+  left: 30px;
+  top: 15px;
+  // font-size: 10px;
+  color: var(--text-color-primary);
+}
+.icon-chrt {
+  position: absolute;
+  left: 250px;
+  top: 11px;
+  font-size: 20px;
+  color: var(--text-color-primary);
+}
+.icon-chlt {
+  font-size: 20px;
+  color: var(--text-color-primary);
+}

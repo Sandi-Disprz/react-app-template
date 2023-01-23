@@ -1,0 +1,38 @@
+.days {
+  padding-left: 8px;
+  padding-top: 5px;
+  .btn-days {
+    border: 0px solid;
+    background-color: transparent;
+    width: 38px;
+    height: 30px;
+    padding: 0px;
+    margin-left: 1px;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    &.current {
+      background-color: var(--bg-primary-thin);
+    }
+    li {
+      font-weight: 200;
+      font-size: small;
+      font-family: "Arbeit";
+    }
+  }
+  .prev-month,
+  .next-month {
+    color: #7776;
+  }
+  .btn-days:hover {
+    background-color: var(--hover-thin);
+  }
+  .selected {
+    background-color: var(--bg-primary-thick);
+    color: #fff;
+  }
+}
+// .this-month{
+//     background-color: antiquewhite;
+//     border-radius: 5px;
+// }
